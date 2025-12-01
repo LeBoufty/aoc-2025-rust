@@ -26,11 +26,26 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             std::process::exit(1);
         }
     };
+    let delta = now.elapsed();
+    if delta.as_millis() <= 10 {
+        println!(
+            "Result : {} // Time elapsed : {}µs",
+            result,
+            now.elapsed().as_micros()
+        );
+    } else if delta.as_millis() >= 10000 {
+        println!(
+            "Result : {} // Time elapsed : {}s",
+            result,
+            now.elapsed().as_secs()
+        );
+    } else {
+        println!(
+            "Result : {} // Time elapsed : {}ms",
+            result,
+            now.elapsed().as_millis()
+        );
+    }
 
-    println!(
-        "Result : {} // Time elapsed : {}ms",
-        result,
-        now.elapsed().as_millis()
-    );
     Ok(())
 }
