@@ -3,6 +3,7 @@ use std::env;
 use std::time::{self};
 
 mod day01;
+mod day02;
 mod functions;
 mod inputs;
 

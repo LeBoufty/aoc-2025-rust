@@ -8,6 +8,8 @@ lazy_static! {
         let mut m = HashMap::new();
         m.insert(("01", "1"), crate::day01::part1 as DayPartFn);
         m.insert(("01", "2"), crate::day01::part2 as DayPartFn);
+        m.insert(("02", "1"), crate::day02::part1 as DayPartFn);
+        m.insert(("02", "2"), crate::day02::part2 as DayPartFn);
         m
     };
 }
