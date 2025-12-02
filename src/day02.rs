@@ -90,7 +90,29 @@ pub fn part1(test: bool) -> Result<u64, Box<dyn error::Error>> {
 }
 
 pub fn part2(test: bool) -> Result<u64, Box<dyn error::Error>> {
-    Ok(0)
+    let ranges = parse_input(test)?;
+    let mut invalid = vec![];
+    for r in ranges {
+        for i in r.start..r.end + 1 {
+            let power = i.ilog10();
+            for p in 1..power + 1 {
+                let mut number = i;
+                let mut rests = vec![];
+                while number.div_euclid((10 as u64).pow(p)) != 0 {
+                    rests.push(number % (10 as u64).pow(p));
+                    number = number.div_euclid((10 as u64).pow(p));
+                }
+                rests.push(number);
+                if rests.iter().all(|&x| x == rests[0]) {
+                    if rests.iter().max().unwrap().ilog10().eq(&(p - 1)) {
+                        invalid.push(i);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    Ok(invalid.iter().sum())
 }
 
 #[test]
@@ -100,5 +122,5 @@ fn test_part1() {
 
 #[test]
 fn test_part2() {
-    assert_eq!(part2(true).unwrap(), 0);
+    assert_eq!(part2(true).unwrap(), 4174379265);
 }
