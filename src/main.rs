@@ -4,6 +4,7 @@ use std::time::{self};
 
 mod day01;
 mod day02;
+mod day03;
 mod functions;
 mod inputs;
 
