@@ -2,9 +2,11 @@ use functions::FUNCTIONS;
 use std::env;
 use std::time::{self};
 
+mod chargrid;
 mod day01;
 mod day02;
 mod day03;
+mod day04;
 mod functions;
 mod inputs;
 
