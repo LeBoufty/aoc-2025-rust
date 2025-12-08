@@ -16,13 +16,16 @@ impl Circuits {
             .enumerate()
             .collect::<Vec<(usize, &(i64, i64, i64))>>();
         for start in available_starts {
+            let already_done = sortie
+                .iter()
+                .filter(|x| x.1 == start.0)
+                .map(|y| y.0)
+                .collect::<Vec<usize>>();
             let mut distances = self
                 .coords
                 .iter()
                 .enumerate()
-                .filter(|(i, _)| {
-                    !i.eq(&start.0) && !sortie.iter().any(|x| &x.0 == i && x.1 == start.0)
-                })
+                .filter(|(i, _)| !i.eq(&start.0) && !already_done.contains(i))
                 .map(|(i, val)| {
                     (
                         start.0,
